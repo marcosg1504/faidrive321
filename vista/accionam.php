@@ -1,15 +1,20 @@
 <?php
 $Titulo = " Ejercicio 1";
 include_once("estructura/cabeceraBT.php");
-include_once("../control/controlam.php");
 include_once("../configuracion.php");
+
 ?>
 <p>
     accion AM ARCHIVO
 </p>
 <?php
 
- $datos = data_submitted(); //print_r($datos);
+ $datos = data_submitted(); 
+ 
+ $enviarDatosBD = new controlArchivoCargado();
+ $enviarDatosBD->alta($datos);
+ 
+
  $informacionForm = new controlam();
  $infoDelArchivo =new controlam();
  $txt=new controlam();
@@ -22,6 +27,9 @@ include_once("../configuracion.php");
  $archivotxt=$txt->creartxt($datos);
  $iconoDelArch=$icono->sugerirIcono($datos);
  $testoEditor=$textoEd->datosEditor($datos);
+/*
+ $objAce= new archivoCargadoEstado();
+ print_r($objAce);*/
 ?>
 
     <div class="row-md-6 mb-3">
@@ -32,7 +40,7 @@ include_once("../configuracion.php");
         echo "TIPO DE ARC:".$iconoDelArch;
         echo $testoEditor;
         ?>  
-        <a href="amarchivo.php" >volver a cargar archivo</a>
+        <br><a href="amarchivo.php" >volver a cargar archivo</a>
 
          
     </div>

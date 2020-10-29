@@ -6,9 +6,9 @@ class controlam  {
     {
         $ie="";
         $icono="";
-        $nombre = $datos['nombreArchivo'];
-        $descripcion = $datos['descripcionArchivo'];
-        $icono=$datos['icono'];
+        $nombre = $datos['acnombre'];
+        $descripcion = $datos['acdescripcion'];
+        $icono=$datos['acicono'];
         if($icono==""){
             echo "tipo de arrrrr: ".$_FILES['miArchivo']['type'];
         }
@@ -28,20 +28,21 @@ class controlam  {
         if($icono=="texto")
         { 
             $ie= "<i class="."\"far fa-file-word\"></i>"; 
-        }
-        
-        ;
-        
+        }        
+        ;       
         
         $texto = 
         "nombre elegido: ".$nombre."<br>Descripcion :".$descripcion."<br>icono elegido: ".$ie;
-     // print_r($datos);
+   
      return $texto;
     }
     public function creartxt($datos){
-        $nombreArchivoDescripcion=$datos['nombreArchivo'].".txt";
-        $descripcion = $datos['descripcionArchivo'];
+        $nombreArchivoDescripcion=$datos['acnombre'].".txt";
+        $descripcion = $datos['acdescripcion'];
         $dir = "archivos/";
+        if  ($datos['nombreCarpeta']!=null){
+            $dir=$datos['nombreCarpeta']."/";
+        }
     if ( $descripcion!="")
     {
         $fArchivoaCrear=fopen($dir.$nombreArchivoDescripcion, "w");
@@ -72,13 +73,10 @@ class controlam  {
        }            
     }
     public function eliminarArchivos($unArc)
-    {
-        //$nombreArchivo=$_FILES['miArchivo']['name'];
-        //echo "ddddddddd ".$nombreArchivo;
-        echo "aaaaaaaa".$unArc;
+    {       
         unlink($unArc);
-        echo "archivo eliminado";
-       //return $texto;
+        $texto ="archivo eliminado";
+        return $texto;
     }
     public function obtenerArchivos()
     {
@@ -92,18 +90,29 @@ class controlam  {
         return $tipoArch;
     }
     public function datosEditor($datos){
-        $datosEd=$datos['descripcionArchivo'];
+        $datosEd=$datos['acdescripcion'];
         return $datosEd;
     }
     public function cargarArchivos($datos)
     {
+        print_r($datos);
+        echo "NOMBRE DE LA CARPETA: ".$datos['nombreCarpeta'];
         $texto="";
+        //
         $nombre=$_FILES['miArchivo']['name'];
         $guardado=$_FILES['miArchivo']['tmp_name'];
+        $ne=$datos['acnombre'];
         $texto= "el nombre es ".$nombre."<br> se encuentra guardato en: ".$guardado;
         $dir = "archivos/";
-        $target_file = $dir . basename($_FILES["miArchivo"]["name"]);
-
+        
+        $target_file = $dir . basename($nombre);
+        if  ($datos['nombreCarpeta']!=null){
+            $dir=$datos['nombreCarpeta']."/";
+        }
+        $info = new SplFileInfo($dir.$nombre);
+        $ext=$info->getExtension();
+       // echo "extencion: ".$ext;
+        
         if ($_FILES['miArchivo']['error'] <=0) 
         {
         $texto= "Nombre: " . $_FILES['miArchivo']['name'] . "<br />".
@@ -116,7 +125,7 @@ class controlam  {
             }
             else{
            $texto=$texto."el archivo: ".$_FILES['miArchivo']['name']." se ha copiado con Éxito <br />";
-
+                rename($dir.$nombre, $dir.$ne.".".$ext);
             }
         }
         else {

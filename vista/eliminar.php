@@ -14,19 +14,10 @@ include_once("../configuracion.php");
  //print_r($datos);
  $eliminar=$datos['archivo'];
  $objEliminar = new controlam();
- $respuesta = $objEliminar->eliminarArchivos($eliminar);
-
-
-
-
-
- 
+ $respuesta = $objEliminar->eliminarArchivos($eliminar); 
  ?>
 
     <div class="row-md-6 mb-3">
         <?php
-        echo $respuesta ;?>              
-         
+        echo $respuesta ;?>                       
     </div>
-
-

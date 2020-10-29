@@ -1999,7 +1999,7 @@
                 size = size.split("x");
             }
 
-            var html = '<br><br>';
+            var html = '';//....
             if (responsive === true) {
                 html += '<div class="videoEmbed" style="position:relative;height:0;padding-bottom:56.25%">';
             }
@@ -2021,9 +2021,9 @@
             }
 
             if (responsive === true) {
-                html += '</div>';
+                html += '';
             }
-            html += '<br><br>';
+            html += '';
 
             if (success) {
                 return html;
@@ -2079,9 +2079,9 @@
             if ($editor && !$editor.find(".richText-editor").html()) {
                 // set first line with the right tags
                 if (settings.useParagraph !== false) {
-                    $editor.find(".richText-editor").html('<p><br></p>');
+                    $editor.find(".richText-editor").html('');
                 } else {
-                    $editor.find(".richText-editor").html('<div><br></div>');
+                    $editor.find(".richText-editor").html('');
                 }
             } else {
                 // replace tags, to force <div> or <p> tags and fix issues

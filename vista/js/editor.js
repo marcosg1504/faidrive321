@@ -38,7 +38,7 @@ You should have received a copy of the GNU General Public License along with thi
 		            	range.deleteContents();
 		            	if(mode=="html")
 	            		{
-    			            var el = document.createElement("div");
+    			            var el = document.createElement("");
 				            el.innerHTML = text;
 				            var frag = document.createDocumentFragment(), node, lastNode;
 				            while ( (node = el.firstChild) ) {
@@ -93,7 +93,7 @@ You should have received a copy of the GNU General Public License along with thi
 		            
 		            if(mode=="html")
 		            { 
-		                var el = document.createElement("div");
+		                var el = document.createElement("");// borre el div
 		                el.innerHTML = text;
 		                var frag = document.createDocumentFragment(), node, lastNode;
 		                while ( (node = el.firstChild) ) {

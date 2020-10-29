@@ -17,8 +17,30 @@ function data_submitted() {
     return $_AAux;
 
 }
+function verEstructura($e){
+    echo "<pre>";
+    print_r($e);
+    echo "</pre>"; 
+}
 
-
+function __autoload($class_name){
+    //echo "class ".$class_name ;
+    $directorys = array(
+        $_SESSION['ROOT'].'modelo/',
+        $_SESSION['ROOT'].'modelo/conector/',
+        $_SESSION['ROOT'].'control/',
+      //  $GLOBALS['ROOT'].'util/class/',
+    );
+    //print_object($directorys) ;
+    foreach($directorys as $directory){
+        if(file_exists($directory.$class_name . '.php')){
+            // echo "se incluyo".$directory.$class_name . '.php';
+            require_once($directory.$class_name . '.php');
+            return;
+        }
+    }
+}
+/*
 spl_autoload_register(function ($clase) {
     echo "Cargamos la clase  ".$clase."<br>" ;
     $directorys = array(
@@ -35,6 +57,6 @@ spl_autoload_register(function ($clase) {
     }
 
 
-});
+});*/
 
 ?>

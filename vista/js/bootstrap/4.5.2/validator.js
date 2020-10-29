@@ -1,5 +1,7 @@
-$('#eje1').bootstrapValidator({
 
+$('#eje1').bootstrapValidator({
+    
+    
     message: 'Este valor no es valido',
 
     feedbackIcons: {
@@ -13,7 +15,7 @@ $('#eje1').bootstrapValidator({
     },
 
     fields: {
-
+        
         numero: {
 
             validators: {
@@ -468,7 +470,51 @@ $('#form1').bootstrapValidator({
 
 });
 
+$('#form2').bootstrapValidator({
 
+    fields: {
+    clave: {
+
+        validators: {
+            stringLength: {
+                min: 8, max: 16,                   
+                message: 'la clave debe tener entre 8 y 16 caracteres',
+               
+                
+            },
+            regexp: {
+               /* /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,*/
+                regexp: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+                message: '<br> debe contener un digito, una minuscula, una mayuscula'
+            },
+
+            notEmpty: {
+
+                message: 'la calve es requerida'
+
+            }                
+
+        }          
+
+    },
+    
+    
+
+
+},  
+});
+$('#form3').bootstrapValidator({
+    fields: {
+    motivo: {
+        validators: {
+        notEmpty: {
+
+            message: 'el motivo no puede ser vacio'
+
+        }       }
+
+    }}
+});
 function validar_clave(contrasenna)
 		{
 			if(contrasenna.length >= 8)
@@ -503,7 +549,8 @@ function validar_clave(contrasenna)
 				}
 			}
 			return false;
-		}
+        }
+    
 
 
 

@@ -1,25 +1,22 @@
-
-
 <!doctype html>
 <html lang="es">
 <head>
-    <!-- Required meta tags -->
+<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-       <!----> 
-   
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../TPBootstrap/vista/css/bootstrap/4.5.2/bootstrap.min.css" >
-    <link rel="stylesheet" href="../../TPBootstrap/vista/css/bootstrap/4.5.2/bootstrapValidator.min.css" >
+ <!-- Bootstrap CSS -->   
+    <link rel="stylesheet" href="http://localhost/faidrive321/vista/css/bootstrap/4.5.2/bootstrap.min.css" >
+    <link rel="stylesheet" href="http://localhost/faidrive321/vista/css/bootstrap/4.5.2/bootstrapValidator.min.css" >
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
  <!-- editor-->
- <link rel="stylesheet" href="src/richtext.min.css">
-<link rel="stylesheet" href="css/site.css">
-<script src="src/jquery.min.js"></script>
+    <link rel="stylesheet" href="src/richtext.min.css">
+    <link rel="stylesheet" href="css/site.css">
+    <script src="src/jquery.min.js"></script>
     <script src="src/jquery.richtext.js"></script>
     <script defer src="src/all.js"></script>
-    
-    <title><?php $Titulo?></title>
+    <!-- funciones JS-->
+    <script src="http://localhost/faidrive321/vista/js/funciones.js"></script>
+    <title> <?php echo $titulo?></title>
 </head>
 <body>
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -42,29 +39,50 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <a class="nav-link" href="amarchivo.php">
+                        <a class="nav-link" href="http://localhost/faidrive321/vista/amarchivo.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                            AM ARCHIVO
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="compartirarchivo.php">
+                        <a class="nav-link" href="http://localhost/faidrive321/vista/contenido.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                           COMPARTIR ARCHIVO
+                           CONTENIDO
+                        </a>
+                    </li>
+                  
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost/faidrive321/vista/compartidos.php">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            COMPARTIDOS
+                        </a>
+                    </li>
+                  
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost/faidrive321/vista/fusuario.php">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                           ABM USUARIOS
+                        </a>
+                    </li>                
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost/faidrive321/vista/festadoTipos.php">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                           ABM ESTADO TIPOS
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="eliminararchivocompartido.php">
+                        <a class="nav-link" href="http://localhost/faidrive321/vista/farchivoCargado.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                            ELIMINAR ARCHIVO COMPARTIDO
+                           ABM ARCHIVO CARGADO
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="eliminararchivo.php">
+                        <a class="nav-link" href="http://localhost/faidrive321/vista/face.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                            ELIMINAR ARCHIVO
+                            ABM ACE
                         </a>
-                    </li>                  
+                    </li>  
                 </ul>
             </div>
         </nav>
@@ -76,3 +94,5 @@
                  
                 </div>
             </div>
+
+            <!-- ********************  ACA TERMINA LA CABECERA * *******************-->
