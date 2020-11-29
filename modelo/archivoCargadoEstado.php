@@ -89,6 +89,8 @@ class archivoCargadoEstado {
             if($res>-1){
                 if($res>0){
                     $row = $base->Registro();
+                    $ojbEstado= new archivoCargado();
+                    $objestado->setid($row['idestadotipos']);
                     $this->setear($row['idarchivocargadoestado'], $row['idestadotipos'],$row['acedescripcion'],$row['idusuario'],$row['acefechaingreso'],$row['acefechafin'],$row['idarchivocargado']);
                 }
             }

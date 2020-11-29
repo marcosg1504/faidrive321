@@ -3,6 +3,7 @@ include_once("../estructura/cabeceraBT.php");
 include_once '../../configuracion.php';
 
 $datos = data_submitted();
+print_r($datos);
 //verEstructura($datos);
 $resp = false;
 $objTrans = new controlUsuario();

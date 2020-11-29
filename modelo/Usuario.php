@@ -171,11 +171,11 @@ class Usuario {
         $arreglo = array();
         $base=new BaseDatos();
         $sql="SELECT * FROM usuario ";
-        //echo "parametro recibido: ".$parametro."<br>";
+        
         if ($parametro!="") {
             $sql.='WHERE '.$parametro;            
         }
-        //echo "sentecia SQL : ".$sql;
+      
         $res = $base->Ejecutar($sql);
         if($res>-1){
             if($res>0){

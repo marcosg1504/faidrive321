@@ -1,22 +1,26 @@
 <?php
 $titulo="AM ARCHIVO";
-include_once("estructura/cabeceraBT.php");
-include_once("../control/controlam.php");
 include_once("../configuracion.php");
-$objAbmUsuario= new controlUsuario();
-$listaUsuario = $objAbmUsuario->buscar(null);
-$datos = data_submitted(); 
+//$objSesion =new Session();
+ /*
+Este codigo para evitar que se acceda al sistem sin iniciar sesion lo coloque en 
+la cabecera
+if($_SESSION==null){   
+ //if( $_SESSION["usnombre"]=="") || ($_SESSION["usnombre"]==null)
+ echo "Para ver el contenido debe ";?> <a href="login.php"> Iniciar sesion </a>
+<?php die();
+}*/
+include_once("estructura/cabeceraBT.php");
 
+$datos = data_submitted(); 
 $variableCarpeta="archivos/";
 if  (isset($datos['nombreCarpeta'])){
-$variableCarpeta=$datos['nombreCarpeta'];}
+$variableCarpeta=$datos['nombreCarpeta'];} 
 
-?>
-  <h2>Subir Archivos</h2>
-<?php
+echo "Usuario activo: ".$objSesion->getUsuario();?>
+<a href="cerrarsesion.php"> cerrar sesion </a>
 
-
-?>
+<h2>Subir Archivos</h2>
 <form  id="form1" name="form1" method="post" action="accionam.php"  data-toggle="validator" enctype="multipart/form-data" >
         <div class="col-md-6 mb-3">      
            <label for="miarchivo" class="control-label">ingrese archivo</label>
@@ -62,15 +66,15 @@ $variableCarpeta=$datos['nombreCarpeta'];}
             </div>
            
         </div>
+
+      
         <div class="col-md-6 mb-3">
-            <label for="usuario" class="control-label">Seleccione un usuario</label>
+            <label for="usuario" class="control-label">Usuario</label>
             <select name="idusuario" id="idusuario">
             <?php
-            if( count($listaUsuario)>0){         
-            foreach ($listaUsuario as $objUsuario) {     
-             echo '<option value='.$objUsuario->getIdusuario().'>'.$objUsuario->getNombre().'</option>';
-	             }
-                }?>       
+          
+             echo '<option value='.$objSesion->getUsuario().'>'.$objSesion->getUsuario().'</option>';
+	             ?>       
             </select>
             <div class="invalid-feedback">
 

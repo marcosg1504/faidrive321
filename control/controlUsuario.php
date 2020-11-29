@@ -1,28 +1,21 @@
 <?php
-class controlUsuario{
-    //Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
-
-    
+class controlUsuario{    
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
-     * @param array $param
-     * @return Auto
+     * @param array $param  
      */
     private function cargarObjeto($param){
         $obj = null;
-        //echo "<br>cargar recibe: "; print_r($param);
-       // echo "marca recibida: ".$param['Marca'];
+     
         if( array_key_exists('idusuario',$param)){
             $obj = new Usuario();
             $obj->setear($param['idusuario'], $param['usnombre'], $param['usapellido'], $param['uslogin'], $param['usclave'], $param['usactivo']);
         }
         return $obj;
-    }
-    
+    }    
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
-     * @param array $param
-     * @return Auto
+     * @param array $param 
      */
     private function cargarObjetoConClave($param){
         $obj = null;
@@ -32,8 +25,7 @@ class controlUsuario{
             $obj->setear($param['idusuario'], null, null,null,null,null);
         }
         return $obj;
-    }
-    
+    }   
     
     /**
      * Corrobora que dentro del arreglo asociativo estan seteados los campos claves
@@ -42,9 +34,8 @@ class controlUsuario{
      */
     
     private function seteadosCamposClaves($param){
-        $resp = false;        
-        //echo "seteados recibe: ";print_r($param);
-        if (isset($param['idusuario']))
+        $resp = false;    
+       if (isset($param['idusuario']))
             $resp = true;        
         return $resp;
     }
@@ -54,19 +45,12 @@ class controlUsuario{
      * @param array $param
      */
     public function alta($param){
-        //echo "ver parmetro en alta: ".$param['patente'];
-       // print_r($param);
-        $resp = false;
-        //echo "veeeeeeeeeeeeer: ".$param['Modelo'];
-        //$param['Patente'] =null;
-        $elObjtUsuario = $this->cargarObjeto($param);
-//        verEstructura($elObjtTabla);
-        
+        $resp = false;      
+        $elObjtUsuario = $this->cargarObjeto($param);        
         if ($elObjtUsuario!=null and $elObjtUsuario->insertar()){
             $resp = true;
         }
-        return $resp;
-        
+        return $resp;        
     }
     /**
      * permite eliminar un objeto 
@@ -74,11 +58,9 @@ class controlUsuario{
      * @return boolean
      */
     public function baja($param){
-        $resp = false;
-        //print_r($param);
+        $resp = false;    
         if ($this->seteadosCamposClaves($param)){
-            $elObjtUsuario = $this->cargarObjetoConClave($param);
-            //echo "el obj auto: ";print_r ($elObjtAuto);
+            $elObjtUsuario = $this->cargarObjetoConClave($param);           
             if ($elObjtUsuario!=null and $elObjtUsuario->eliminar()){
                 $resp = true;
             }
@@ -92,13 +74,10 @@ class controlUsuario{
      * @param array $param
      * @return boolean
      */
-    public function modificacion($param){
-        //echo "Estoy en modificacion";
-       // echo "modificacion recibe: "; print_r($param);
+    public function modificacion($param){      
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $elObjtUsuario = $this->cargarObjeto($param);
-            //echo "el OBJETO AUTO: "; print_r($elObjtUsuario);
+            $elObjtUsuario = $this->cargarObjeto($param);            
             if($elObjtUsuario!=null and $elObjtUsuario->modificar()){
                 $resp = true;
             }
@@ -111,73 +90,64 @@ class controlUsuario{
      * @param array $param
      * @return boolean
      */
-    public function buscar($param){
-        //$where = " true ";// ASI ESTABA ANTES
-        $where = "";$c="'";
-        //echo "parametro id usuario: ".$param['usnombre'];
+    public function buscar($param){       
+        $where = "";
+        $c="'";        
         
-        if ($param<>NULL){
-            /*if  (isset($param['Patente']))
-            $where.=" and Patente =".$param['Patente']; ASI ESTABA ANTES*/ 
+        if ($param<>NULL){   
+          
             if  (isset($param['idusuario']))
                 $where.="idusuario =".$c.$param['idusuario'].$c;
+
+                if($where==""){
+                    if  (isset($param['usnombre']))
+                    $where.="usnombre ='".$param['usnombre']."'";
+                }else{
             if  (isset($param['usnombre']))
                  $where.="and usnombre ='".$param['usnombre']."'";
-            if  (isset($param['usapellido']))
-                 $where.=" and usapellido ='".$param['usapellido']."'";
-            if  (isset($param['uslogin']))
-                 $where.=" and uslogin ='".$param['uslogin']."'";
-            if  (isset($param['usclave']))
-                 $where.=" and usclave ='".$param['usclave']."'";
-            if  (isset($param['usactivo']))
-                 $where.=" and usactivo ='".$param['usactivo']."'";
+                }
+                if($where==""){
+                    if  (isset($param['usapellido']))
+                    $where.="usapellido ='".$param['usapellido']."'";
+                }else{
+                    if  (isset($param['usapellido']))
+                    $where.=" and usapellido ='".$param['usapellido']."'";
+                }
+                if($where==""){
+                    if  (isset($param['uslogin']))
+                 $where.="uslogin ='".$param['uslogin']."'";
+                }else{
+                    if  (isset($param['uslogin']))
+                    $where.=" and uslogin ='".$param['uslogin']."'";
+                }
+                if($where==""){
+                    if  (isset($param['usclave']))
+                    $where.="usclave ='".$param['usclave']."'";
+                }else{
+                    if  (isset($param['usclave']))
+                    $where.=" and usclave ='".$param['usclave']."'";
+                }
+                if($where==""){                      
+                if  (isset($param['usactivo']))
+                $where.="usactivo ='".$param['usactivo']."'";
+                }else{               
+                    if  (isset($param['usactivo']))
+                    $where.=" and usactivo ='".$param['usactivo']."'";
+                }         
         }
-        $arreglo = Usuario::listar($where);  
-        //echo "aca abajo arreglo<br>";
-        //print_r($arreglo);
-        return $arreglo;      
-                
-        
+        $arreglo = Usuario::listar($where); 
+         return $arreglo;      
     }
-    
+    public function iniciarSesionUsuario($param){
+        $resp=false;
+        if($this->buscar($param)!=null){
+            $objSesion =new Session();
+            $objSesion->iniciar($param["uslogin"],$param["usclave"]);
+           $resp=true;
+        }
+        return $resp;
+
+    }    
 }
-
-
-
-
-
-
-
-
-/* if ($param<>NULL){
-            /*if  (isset($param['Patente']))
-            $where.=" and Patente =".$param['Patente']; ASI ESTABA ANTES
-            if  (isset($param['idusuario']))
-                $where.="idusuario =".$c.$param['idusuario'].$c;
-            if  (isset($param['usnombre']))
-                 $where.=" and usnombre ='".$param['usnombre']."'";
-            if  (isset($param['usapellido']))
-                 $where.=" and usapellido ='".$param['usapellido']."'";
-            if  (isset($param['uslogin']))
-                 $where.=" and uslogin ='".$param['uslogin']."'";
-            if  (isset($param['usclave']))
-                 $where.=" and usclave ='".$param['usclave']."'";
-            if  (isset($param['usactivo']))
-                 $where.=" and usactivo ='".$param['usactivo']."'";
-        } */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
 
