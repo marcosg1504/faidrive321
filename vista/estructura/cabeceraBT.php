@@ -1,4 +1,4 @@
-<?php
+<?php 
 include_once("../configuracion.php");
 $objSesion =new Session();
 if($_SESSION==null){   

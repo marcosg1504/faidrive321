@@ -16,31 +16,34 @@ $unArray['idarchivocargado']=$datos['idarchivocargado'];
 $objBusqueda= new controlArchivoCargado();
 $lista = $objBusqueda->buscar($unArray);
 }
+$unArray['uslogin']=$objSesion->getUsuario(); 
 
- //print_r($datos);
-$objAbmUsuario= new controlUsuario();
-$listaUsuario = $objAbmUsuario->buscar(null);
-?>
+echo "Usuario activo: ".$objSesion->getUsuario(); 
+
+$unObjUsuario=new controlUsuario();
+$usLogeado= $unObjUsuario->buscar($unArray);
+?> 
+<a href="cerrarsesion.php"> cerrar sesion </a> 
+
 <form  id="form2" name="form2" method="post" action="accionCompartirArchivo.php"  data-toggle="validator" >
     <!--<form  id="eje4" name="eje4" method="POST" action="accion.php">-->
     <div class="col-md-6 mb-3">            
            <p>el archivo que va a compartir es: </p>
            <?php           
                  if($lista!=null){
-                echo ' '.$lista[0]->getAcnombre().'<br>';}
+                echo '<b> '.$lista[0]->getAcnombre().'</b><br>';}
                         
            
            ?>
       </div>
     <div class="col-md-6 mb-3">
-            <label for="usuario" class="control-label">Seleccione un usuario</label>
+            <label for="usuario" class="control-label"> usuario</label>
             <select name="idusuario" id="idusuario">
             <?php
-            if( count($listaUsuario)>0){         
-            foreach ($listaUsuario as $objUsuario) {     
-             echo '<option value='.$objUsuario->getIdusuario().'>'.$objUsuario->getNombre().'</option>';
-	             }
-                }?>       
+             //$objSesion->getUsuario() o $usLogeado[0]->getNombre() puedo usar cualquiera?
+             echo '<option value='.$usLogeado[0]->getIdusuario().'>'.$objSesion->getUsuario().'</option>';
+	         
+            ?>       
             </select>
             <div class="invalid-feedback">      </div>
             <br> <p> id del archivo a compartir: </p>
@@ -63,7 +66,7 @@ $listaUsuario = $objAbmUsuario->buscar(null);
         </div> 
         <div class="col-md-6 mb-3">
             <label for="usuario" class="control-label">Descripcion</label>
-            <input class="form-control" id="acedescripcion " name="acedescripcion "  value="ingrese descripcion" type="text" >
+            <input class="form-control" id="acedescripcion" name="acedescripcion"  value="ingrese descripcion" type="text" >
             <div class="invalid-feedback">       </div>
         </div> 
         <div class="col-md-6 mb-3">

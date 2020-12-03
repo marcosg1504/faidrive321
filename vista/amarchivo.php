@@ -9,15 +9,20 @@ if($_SESSION==null){
  //if( $_SESSION["usnombre"]=="") || ($_SESSION["usnombre"]==null)
  echo "Para ver el contenido debe ";?> <a href="login.php"> Iniciar sesion </a>
 <?php die();
-}*/
+}*/ 
 include_once("estructura/cabeceraBT.php");
 
 $datos = data_submitted(); 
 $variableCarpeta="archivos/";
 if  (isset($datos['nombreCarpeta'])){
 $variableCarpeta=$datos['nombreCarpeta'];} 
+$unArray['uslogin']=$objSesion->getUsuario(); 
 
-echo "Usuario activo: ".$objSesion->getUsuario();?>
+echo "Usuario activo: ".$objSesion->getUsuario(); 
+
+$unObjUsuario=new controlUsuario();
+$usLogeado= $unObjUsuario->buscar($unArray);
+?>
 <a href="cerrarsesion.php"> cerrar sesion </a>
 
 <h2>Subir Archivos</h2>
@@ -73,7 +78,7 @@ echo "Usuario activo: ".$objSesion->getUsuario();?>
             <select name="idusuario" id="idusuario">
             <?php
           
-             echo '<option value='.$objSesion->getUsuario().'>'.$objSesion->getUsuario().'</option>';
+             echo '<option value='.$usLogeado[0]->getIdusuario().'>'.$objSesion->getUsuario().'</option>';
 	             ?>       
             </select>
             <div class="invalid-feedback">

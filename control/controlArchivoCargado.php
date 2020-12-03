@@ -18,7 +18,7 @@ class controlArchivoCargado{
        // echo $obj;
         return $obj;
     }
-    
+     
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
      * @param array $param
@@ -57,7 +57,7 @@ class controlArchivoCargado{
        
         $resp = false;       
         $elObjtAc = $this->cargarObjeto($param);
-//            
+         
         if ($elObjtAc!=null and $elObjtAc->insertar()){
             $resp = true;
         }
