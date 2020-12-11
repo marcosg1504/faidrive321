@@ -1,4 +1,11 @@
 <?php
+/*
+ * Guardar la pass encriptada
+ * Administrador solo debería poder gestionar usuarios
+ * Accede al arreglo asociativo $_SESSION, debe estar encapsulado en la clase SESSION.
+(*)Compartir 
+cada usuario debe ver su contenido
+*/
 $titulo="AM ARCHIVO";
 include_once("../configuracion.php");
 //$objSesion =new Session();

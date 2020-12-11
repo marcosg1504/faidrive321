@@ -131,12 +131,12 @@ class controlUsuarioRol {
      */
      
     public function buscar($param){
-         print_R ($param);
+        // print_R ($param);
         
         $where = "";
-        if ($param<>NULL){
+        if ($param<>NULL){ 
             if  (isset($param['idusuario']))
-                $where.=" and idusuario='".$param['idusuario']."'";
+                $where.="idusuario='".$param['idusuario']."'";
             if  (isset($param['idrol']))
                 $where.=" and idrol ='".$param['idrol']."'";
         }

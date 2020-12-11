@@ -14,6 +14,7 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/md5.js"></script>
     <title>Registrar nuevo usuario</title>
     <style>
         label {
@@ -62,7 +63,6 @@ $idUltimoUsuario=$listaUs[$cantUs]->getIdUsuario()+1;
                     <div class="form-group">
                         <label for="password">Contraseña</label>
                         <input name="usclave" id="usclave" type="password" class="form-control" placeholder="Contraseña" required>
-                        
                     </div>
                     <div class="form-group">
                         <input name="usactivo" id="usactivo" type="hidden" class="form-control" value="1">
@@ -91,7 +91,7 @@ $idUltimoUsuario=$listaUs[$cantUs]->getIdUsuario()+1;
                      <a href="login.php"> volver a iniciar sesion </a>
                         
                     </div>
-                    <input type="submit" class="btn btn-primary btn-block mt-5" value="registrarse">
+                    <input type="submit" class="btn btn-primary btn-block mt-5" value="registrarse" onclick='(document.getElementById("usclave").value=hex_md5(document.getElementById("usclave").value))'>
                 </form>
 
             </div>

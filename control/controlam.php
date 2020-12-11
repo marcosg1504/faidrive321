@@ -50,6 +50,26 @@ class controlam  {
         fclose($fArchivoaCrear);
     }
 }
+public function crearlink($datos){
+    $url=$datos['aclinkacceso'].".html";
+    print_r($datos);
+  // $c="\"";
+    //$descripcion = $datos['acdescripcion'];
+    $dir = "archivos/"; 
+    if  (isset($datos['nombreCarpeta'])){
+        $dir=$datos['nombreCarpeta']."/";
+    }/*
+    $foo = <<<EOD
+    <a href="$dir.$datos['nombrearchivo']" download=".$dir.$datos['nombrearchivo']>Descargar archivo</a>;
+
+    <h1>Un texto html, bla bla bla bla</h1>
+    EOD; */
+    $textohmtl="algo..";
+    $fArchivoaCrear=fopen($dir.$url, "w");
+    fwrite($fArchivoaCrear, $foo);
+    fclose($fArchivoaCrear);
+
+}
     public function  opcionesArchivos($datos)
     {
         

@@ -142,12 +142,29 @@ class controlUsuario{
         $resp=false;
         if($this->buscar($param)!=null){
             $objSesion =new Session();
-            $objSesion->iniciar($param["uslogin"],$param["usclave"]);
+            $objSesion->iniciar($param["uslogin"]);
            $resp=true;
         }
+        
         return $resp;
 
-    }    
+    }    /*
+    public function esAdmin($param){
+      
+        $usLogeado= $this->buscar($param);
+        $var=false;
+        if(count($usLogeado)>0){
+            $unArray['idusuario']=$usLogeado[0]->getIdusuario();
+            $objUsRol=new controlUsuarioRol();
+            $rol=$objUsRol->buscar($unArray);
+            if($rol[0]->getObjRol()==1){
+                $var=true;
+            }
+        }
+        return $var;
+        
+
+    }*/
 }
 ?>
 

@@ -8,6 +8,7 @@ $listaUsuario = $objAbmUsuario->buscar(null);
 
 $objAbmAc= new controlArchivoCargado();
 $listaAc= $objAbmAc->buscar(null);
+
 ?>
   <h2>Contenido </h2>
 
@@ -39,7 +40,7 @@ $arreglo = $obj4->obtenerArchivos();
         
             <div class="col mb-6">
                 <h4>Opciones de archivos</h4>
-                 <?php
+                 <?php 
                  $dir="../vista/archivos/";
                    
                     if(count($arreglo)==2){echo "no hay archivos para mostrar";};
@@ -54,8 +55,10 @@ $arreglo = $obj4->obtenerArchivos();
                 $info = new SplFileInfo($arreglo[$i]);
                 $var=$info->getExtension();
                 echo "extencion del archivo: ".$var;
-                echo "<br> ";   
-             }?> 
+                echo "<br> ";  ?> 
+                <input id="nombrearchivo" name="nombrearchivo" type="hidden" value="<?php echo $arreglo[$i].$var ?>" >
+
+           <?php  }?> 
             </div> 
             <div class="col mb-6">
                  <h4>Compartir archivos </h4>
@@ -65,8 +68,10 @@ $arreglo = $obj4->obtenerArchivos();
                  foreach ($listaAc as $objAc) 
                  {?>    
 
-                    <?php echo '<option value='.$objAc->getIdarchivocargado().'>'."Nombre del archivo: ".$objAc->getAcnombre().'</option>';?>
+                    <?php                   
+                    echo '<option value='.$objAc->getIdarchivocargado().'>'."Nombre del archivo: ".$objAc->getAcnombre().'</option>';?>
                     <input type="radio" id="idarchivocargado" name="idarchivocargado" value="<?php echo $objAc->getIdarchivocargado()?>" >Seleccionar<br>
+
               <?php  }
                 }    ?>
                 

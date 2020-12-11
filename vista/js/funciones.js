@@ -52,3 +52,12 @@ function validar(){
          alert("es menor a 5");
      }
  }
+
+ function verclave(){
+    var tipo = document.getElementById("usclave2");
+    if(tipo.type == "password"){
+        tipo.type = "text";
+    }else{
+        tipo.type = "password";
+    }
+}

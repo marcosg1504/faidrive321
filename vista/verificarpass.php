@@ -5,7 +5,7 @@ $unUsuario = new controlUsuario();
 
 
 $var=false;
-$resp=$unUsuario->iniciarSesionUsuario($datos); 
+$resp=$unUsuario->iniciarSesionUsuario($datos);  
 if($resp)
 {
    $var=true; 

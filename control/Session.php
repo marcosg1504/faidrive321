@@ -6,10 +6,10 @@ class Session
 		session_start();
 	     }
 	
-	public function iniciar($nombreUsuario,$psw) {
+	public function iniciar($nombreUsuario) {
         $resp=true;
         $_SESSION['usnombre']=$nombreUsuario;
-        $_SESSION['uspass']=$psw; 
+       // $_SESSION['uspass']=$psw; 
         return $resp; 
         
 	}
@@ -17,10 +17,10 @@ class Session
         $inicia=false;
         if(isset($_SESSION['usnombre']))
         { 
-            if(isset($_SESSION['uspass']))
-            {
+           /* if(isset($_SESSION['uspass']))
+            {*/
            $inicia=true;
-            }
+            //}
 
         }
         return $inicia;
@@ -28,7 +28,7 @@ class Session
 	
 	public function activa() {
 		$resp=false;
-		if (session_status()=== PHP_SESSION_ACTIVE) {
+		if (session_status()===PHP_SESSION_ACTIVE) {
 			$resp=true;
 		}
 		return $resp;
@@ -44,22 +44,23 @@ class Session
             }
 			return $usuarioLog;
 	}
-	 public function getRol() {
+	 public function getRol() { 
+		 $rol="";
 	 	if ($this->getUsuario()!==null) {
-	 		$usuarioLog=$this->getUsuario();
-	 		$param=array();
-	 		$param['idusuario']=$usuarioLog->getIdUsuario();
+	 		$usuarioLog=$this->getUsuario(); 
+			 $param=array();
+			$param['uslogin']=$usuarioLog; 
+			$objUs=new controlUsuario();
+			$listaUs=$objUs->buscar($param);			
+			$param['idusuario']=$listaUs[0]->getIdusuario(); 
+	 	 //$param['idusuario']=$usuarioLog->getIdUsuario(); getIdusuario
 	 		$objTransUsRol=new controlUsuarioRol();
-	 		$lista=$objTransUsRol->buscar($param);
-	 		$objRol=$lista[0];
-	 		$param1=array();
-	 		$param1['idrol']=$objRol->getIdRol();
-	 		$objTransRol=new controlRol();
-	 		$lista=$objTransRol->buscar($param1);
-	 		$objRol=$lista[0];
+			 $listaUsRol=$objTransUsRol->buscar($param);
+			 $rol=$listaUsRol[0]->getObjRol()->getIdrol(); 
+	 		
 	 		
 	 	}
-	 	return $objRol;
+	 	return $rol;
 	 	}
 	 	
 	 	public function cerrar() {
@@ -67,7 +68,7 @@ class Session
 	 		if ($this->activa()) {
 	 			unset($_SESSION['usnombre']);
                  unset($_SESSION['uspass']);
-                 setcookie("usnombre", null);
+              //   setcookie("usnombre", null);
 	 			session_destroy();
 	 		}
 	 	}

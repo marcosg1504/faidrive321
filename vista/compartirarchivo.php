@@ -9,6 +9,7 @@ include_once("../configuracion.php");
 </p>
 <?php
 $datos = data_submitted(); 
+print_r($datos);
 $unArray = array();
 $lista=null;
 if($datos!=null){
@@ -27,6 +28,8 @@ $usLogeado= $unObjUsuario->buscar($unArray);
 
 <form  id="form2" name="form2" method="post" action="accionCompartirArchivo.php"  data-toggle="validator" >
     <!--<form  id="eje4" name="eje4" method="POST" action="accion.php">-->
+    <input type="hidden" id="nombrearchivo" name="nombrearchivo"  value='<?php echo $datos['nombrearchivo'] ?>' >
+
     <div class="col-md-6 mb-3">            
            <p>el archivo que va a compartir es: </p>
            <?php           
@@ -61,7 +64,7 @@ $usLogeado= $unObjUsuario->buscar($unArray);
         </div>
         <div class="col-md-6 mb-3">
             <label for="usuario" class="control-label">Link de acceso</label>
-            <input class="form-control" id="aclinkacceso" name="aclinkacceso"  value="9007199254740991" type="text" >
+            <input class="form-control" id="aclinkacceso" name="aclinkacceso"  value="<?php echo md5(uniqid(rand(), true))?>"  type="text" >
             <div class="invalid-feedback">       </div>
         </div> 
         <div class="col-md-6 mb-3">

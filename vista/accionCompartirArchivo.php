@@ -4,13 +4,17 @@ include_once("estructura/cabeceraBT.php");
 include_once("../configuracion.php");
 ?>
 
-<p>
+<p> 
     accion COMPARTIR ARCHIVO
 </p>
 
 <?php
 $resp=false;
-$datos = data_submitted(); 
+$datos = data_submitted();
+print_r($datos);
+$objControlAm= new controlAm();
+$objControlAm->crearlink($datos);
+//echo $datos['aclinkacceso'];
 $datos['idestadotipos']="2";
 $datos['idarchivocargadoestado']="";
 print_r($datos);
